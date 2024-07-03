@@ -1,4 +1,5 @@
 mod array_1_0_swaps;
+mod array_binary_search;
 mod array_count_subarrays_containing_pair;
 mod array_count_unique_elements;
 mod array_dominoes_final_state;
