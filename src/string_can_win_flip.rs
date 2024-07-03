@@ -21,15 +21,16 @@ pub fn can_win(string: String) -> bool {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use std::ops::Not;
 
     #[test]
     fn tests() {
-        assert!(!can_win(String::from("")));
-        assert!(!can_win(String::from("+")));
-        assert!(!can_win(String::from("-")));
-        assert!(!can_win(String::from("--")));
-        assert!(!can_win(String::from("++-++")));
-        assert!(!can_win(String::from("+-+-")));
+        assert!(can_win(String::from("")).not());
+        assert!(can_win(String::from("+")).not());
+        assert!(can_win(String::from("-")).not());
+        assert!(can_win(String::from("--")).not());
+        assert!(can_win(String::from("++-++")).not());
+        assert!(can_win(String::from("+-+-")).not());
         assert!(can_win(String::from("++")));
         assert!(can_win(String::from("-++")));
         assert!(can_win(String::from("-+++")));
