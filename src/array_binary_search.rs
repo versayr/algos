@@ -12,7 +12,6 @@ pub fn binary_search(array: Vec<i32>, target: i32) -> bool {
     while lo < hi {
         let mid: usize = lo + ((hi - lo) >> 1);
         let curr: i32 = array[mid];
-        println!("{} {} {}", lo, mid, hi);
         match curr.cmp(&target) {
             Ordering::Equal => return true,
             Ordering::Less => lo = mid + 1,
@@ -35,6 +34,7 @@ mod tests {
         assert!(binary_search(vec![1], 3).not());
         assert!(binary_search(vec![1], -3).not());
         assert!(binary_search(vec![1], 1));
+        assert!(binary_search(vec![1, 2], 2));
     }
 
     #[test]

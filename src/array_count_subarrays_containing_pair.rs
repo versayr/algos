@@ -1,21 +1,21 @@
 use std::collections::HashMap;
 
 #[allow(dead_code)]
-pub fn subarrays_sum_to_k(array: &Vec<u32>, subarray_length: u32, sum: u32) -> u32 {
+pub fn subarrays_sum_to_k(array: &[u32], subarray_length: u32, sum: u32) -> u32 {
     let subarray_length = subarray_length as usize;
 
     let mut result: u32 = 0;
-    let mut freq = HashMap::new();
+    let mut freq: HashMap<&u32, u32> = HashMap::new();
     let mut pairs_in_window: u32 = 0;
 
     for i in 0..array.len() {
-        let curr = &array[i];
+        let curr: &u32 = &array[i];
         if freq.contains_key(&(sum - curr)) {
             pairs_in_window += 1;
         };
 
         if i >= subarray_length {
-            let last = &array[i - subarray_length];
+            let last: &u32 = &array[i - subarray_length];
 
             if freq.get(last) == Some(&1) {
                 freq.remove(last);
@@ -35,12 +35,12 @@ pub fn subarrays_sum_to_k(array: &Vec<u32>, subarray_length: u32, sum: u32) -> u
         match freq.get(curr) {
             Some(count) => {
                 freq.insert(curr, count + 1);
-            },
+            }
             None => {
                 freq.insert(curr, 1);
             }
         };
-    };
+    }
 
     result
 }
