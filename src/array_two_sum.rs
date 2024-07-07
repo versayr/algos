@@ -5,13 +5,10 @@ pub fn two_sum(array: Vec<i32>, target: i32) -> Result<Vec<usize>, &'static str>
     let mut map: HashMap<i32, usize> = HashMap::new();
 
     for (idx, value) in array.iter().enumerate() {
-        let complement = target - value;
-
-        if let Some(result) = map.get(&complement) {
-            return Ok(vec![*result, idx]);
-        } else {
-            map.insert(*value, idx);
-        }
+        match map.get(&(target - value)) {
+            Some(result) => return Ok(vec![*result, idx]),
+            None => map.insert(*value, idx),
+        };
     }
 
     Err("No valid results found.")
