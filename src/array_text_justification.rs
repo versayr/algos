@@ -27,7 +27,8 @@ pub fn justify(words: Vec<&str>, target: usize) -> Vec<String> {
 
 fn normal_justify(line: Vec<&str>, chars: usize, max: usize) -> String {
     let gaps: usize = line.len() - 1;
-    let baseline_spaces: String = format!("{:w$}", " ", w = 1 + (max - chars) / gaps);
+    let baseline: usize = 1 + (max - chars) / gaps;
+    let baseline_spaces: String = format!("{:baseline$}", " ");
     let mut remainder: usize = (max - chars) % gaps;
     let mut words: Vec<&str> = vec![];
     let mut iter = line.into_iter().peekable();
