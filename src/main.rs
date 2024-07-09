@@ -7,6 +7,7 @@ mod array_dutch_national_flag;
 mod array_fewer_than_x_distinct_values;
 mod array_generate_superset;
 mod array_two_sum;
+mod array_text_justification;
 mod int_is_palindrome;
 mod string_can_win_flip;
 

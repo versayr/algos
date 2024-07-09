@@ -23,6 +23,8 @@ mod tests {
         assert!(is_palindrome(10).not());
         assert!(is_palindrome(121));
         assert!(is_palindrome(1));
+        assert!(is_palindrome(0));
+        assert!(is_palindrome(-0));
         assert!(is_palindrome(221122));
     }
 }
