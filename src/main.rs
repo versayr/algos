@@ -8,6 +8,7 @@ mod array_fewer_than_x_distinct_values;
 mod array_generate_superset;
 mod array_two_sum;
 mod array_text_justification;
+mod binary_tree_dfs_stack;
 mod int_is_palindrome;
 mod string_can_win_flip;
 
