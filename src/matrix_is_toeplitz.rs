@@ -1,18 +1,10 @@
 #[allow(dead_code)]
 pub fn is_toeplitz(matrix: Vec<Vec<i32>>) -> bool {
-    for (x, row) in matrix.iter().enumerate() {
-        if let Some(next_row) = matrix.get(x + 1) {
-            for (y, element) in row.iter().enumerate() {
-                if let Some(next_element) = next_row.get(y + 1) {
-                    if *element != *next_element {
-                        return false;
-                    }
-                } else {
-                    break;
-                };
+    for (x, row) in matrix.iter().enumerate().take(matrix.len() - 1) {
+        for (y, element) in row.iter().enumerate().take(matrix.len() - 1) {
+            if *element != matrix[x + 1][y + 1] {
+                return false;
             }
-        } else {
-            break;
         }
     }
 
@@ -24,39 +16,22 @@ pub fn is_toeplitz_bi(matrix: Vec<Vec<i32>>) -> bool {
     let mut right: bool = true;
     let mut left: bool = true;
 
-    for (x, row) in matrix.iter().enumerate() {
-        if let Some(next_row) = matrix.get(x + 1) {
-            for (y, element) in row.iter().enumerate() {
-                if let Some(next_element) = next_row.get(y + 1) {
-                    if *element != *next_element {
-                        right = false;
-                        break;
-                    }
-                } else {
-                    break;
-                };
+    for (x, row) in matrix.iter().enumerate().take(matrix.len() - 1) {
+        for (y, element) in row.iter().enumerate().take(matrix.len() - 1) {
+            if *element != matrix[x + 1][y + 1] {
+                right = false;
+                break;
             }
-        } else {
-            break;
         }
     }
 
-    for (x, row) in matrix.iter().enumerate() {
-        if let Some(next_row) = matrix.get(x + 1) {
-            for (y, element) in row.iter().enumerate() {
-                if y == 0 { continue };
-                if let Some(next_element) = next_row.get(y - 1) {
-                    if *element != *next_element {
-                        left = false;
-                        break;
-                    }
-                } else {
-                    break;
-                };
+    for (x, row) in matrix.iter().enumerate().take(matrix.len() - 1) {
+        for (y, element) in row.iter().enumerate().skip(1) {
+            if *element != matrix[x + 1][y - 1] {
+                left = false;
+                break;
             }
-        } else {
-            break;
-        };
+        }
     }
 
     right || left
@@ -141,4 +116,20 @@ mod tests {
 //             }
 //         }
 //     }
-
+//
+//     for (x, row) in matrix.iter().enumerate() {
+//         if let Some(next_row) = matrix.get(x + 1) {
+//             for (y, element) in row.iter().enumerate() {
+//                 if let Some(next_element) = next_row.get(y + 1) {
+//                     if *element != *next_element {
+//                         right = false;
+//                         break;
+//                     }
+//                 } else {
+//                     break;
+//                 };
+//             }
+//         } else {
+//             break;
+//         }
+//     }
