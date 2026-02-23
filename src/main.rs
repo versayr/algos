@@ -12,6 +12,7 @@ mod binary_tree_dfs_stack;
 mod int_is_palindrome;
 mod matrix_is_toeplitz;
 mod sort_bubble;
+mod sort_insertion;
 mod string_can_win_flip;
 
 fn main() {
