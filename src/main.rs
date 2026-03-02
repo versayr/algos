@@ -14,6 +14,7 @@ mod matrix_is_toeplitz;
 mod sort_bubble;
 mod sort_insertion;
 mod string_can_win_flip;
+mod ll_count_odd_elements;
 
 fn main() {
     println!("Running tests!");
