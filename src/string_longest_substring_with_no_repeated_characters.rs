@@ -7,16 +7,9 @@ pub fn length_of_longest_substring(s: String) -> i32 {
     let mut map: HashMap<char, usize> = HashMap::new();
 
     for (fast, cha) in s.chars().enumerate() {
-        let mut updated = false;
-
-        if let Some(index) = map.get(&cha) {
-            if *index >= slow {
-                slow = index + 1;
-                updated = true;
-            }
-        }
-
-        if !updated {
+        if let Some(index) = map.get(&cha) && index >= &slow {
+            slow = index + 1;
+        } else {
             result = result.max((fast - slow) as i32 + 1);
         }
 
