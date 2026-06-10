@@ -58,6 +58,5 @@ mod tests {
     fn test_array_largest() {
         let array = vec![1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0];
         assert_eq!(min_swaps(&array), 16);
-
     }
 }

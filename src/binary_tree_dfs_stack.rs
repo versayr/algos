@@ -1,4 +1,4 @@
-use::std::{rc::Rc, cell::RefCell};
+use ::std::{cell::RefCell, rc::Rc};
 
 #[derive(Debug, Clone)]
 pub struct BinaryTree<T> {
@@ -52,7 +52,6 @@ pub fn dfs(root: BinaryTree<i32>) -> Vec<i32> {
         if let Some(ref right) = node.right {
             stack.push(right.borrow().clone());
         }
-
     }
 
     result
@@ -80,14 +79,14 @@ mod tests {
 //
 // use std::cell::Ref;
 // use::std::{rc::Rc, cell::RefCell};
-// 
+//
 // #[derive(Debug)]
 // struct Node {
 //     value: i32,
 //     left: BinaryTree,
 //     right: BinaryTree,
 // }
-// 
+//
 // impl Node {
 //     fn new(value: i32) -> Rc<RefCell<Node>> {
 //         Rc::new(RefCell::new(Node {
@@ -97,56 +96,56 @@ mod tests {
 //         }))
 //     }
 // }
-// 
+//
 // #[derive(Debug)]
 // struct BinaryTree {
 //     root: Option<Rc<RefCell<Node>>>
 // }
-// 
+//
 // impl BinaryTree {
 //     fn new(root) -> Self {
 //         BinaryTree { root }
 //     }
 // }
-// 
+//
 // #[allow(dead_code)]
 // pub fn dfs(root: BinaryTree) -> Vec<i32> {
 //     let mut result: Vec<i32> = vec![];
 //     let mut stack: Vec<BinaryTree> = vec![];
 //     stack.push(root);
-// 
+//
 //     while let Some(node) = stack.pop() {
 //         todo!("{:?}", node);
 // //         result.push(node.borrow().value);
-// // 
+// //
 // //         let children = node.borrow();
-// // 
+// //
 // //         if let Some(left) = &children.left {
 // //             stack.push(Rc::clone(left));
 // //         }
-// // 
+// //
 // //         if let Some(right) = &children.right {
 // //             stack.push(Rc::clone(right));
 // //         }
 //     }
-// 
+//
 //     result
 // }
-// 
+//
 // #[cfg(test)]
 // mod tests {
 //     use super::*;
-// 
+//
 //     #[test]
 //     fn test() {
 // //        let root = TreeNode::new(
-// //            1, 
-// //            Some(TreeNode::new(2)), 
+// //            1,
+// //            Some(TreeNode::new(2)),
 // //            None);
 // //  let root = Rc::new(RefCell::new(TreeNode::new(1, None, None)));
 // //         let root: BinaryTree = Some(Rc::new(RefCell::new(Node::new(
-// //             1, 
-// //             Some(Rc::new(RefCell::new(Node::new(2, None, None)))), 
+// //             1,
+// //             Some(Rc::new(RefCell::new(Node::new(2, None, None)))),
 // //             None))));
 // //         assert_eq!(dfs(root), vec![1, 2])
 //         let root: BinaryTree = BinaryTree::new();

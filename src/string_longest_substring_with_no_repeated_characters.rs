@@ -14,7 +14,7 @@ pub fn length_of_longest_substring(s: String) -> i32 {
                 slow = index + 1;
                 updated = true;
             }
-        } 
+        }
 
         if !updated {
             result = result.max((fast - slow) as i32 + 1);

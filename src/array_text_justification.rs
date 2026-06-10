@@ -60,7 +60,9 @@ mod tests {
         );
         assert_eq!(
             justify(
-                vec!["the", "quick", "brown", "fox", "jumps", "over", "the", "lazy", "dog"],
+                vec![
+                    "the", "quick", "brown", "fox", "jumps", "over", "the", "lazy", "dog"
+                ],
                 9
             ),
             vec![
@@ -73,7 +75,9 @@ mod tests {
         );
         assert_eq!(
             justify(
-                vec!["the", "quick", "brown", "fox", "jumps", "over", "the", "lazy", "dog"],
+                vec![
+                    "the", "quick", "brown", "fox", "jumps", "over", "the", "lazy", "dog"
+                ],
                 16
             ),
             vec!["the  quick brown", "fox  jumps  over", "the lazy dog    "]
