@@ -15,6 +15,8 @@ mod sort_bubble;
 mod sort_insertion;
 mod string_can_win_flip;
 mod ll_count_odd_elements;
+mod ll_add_two_numbers;
+mod string_longest_substring_with_no_repeated_characters;
 
 fn main() {
     println!("Running tests!");
