@@ -7,10 +7,10 @@
 #[derive(PartialEq, Eq, Clone, Debug)]
 pub struct ListNode {
     pub val: i32,
-    pub next: Option<Box<ListNode>>,
+    pub next: Option<Box<Self>>,
 }
 
-#[allow(dead_code)]
+#[allow(dead_code, clippy::linkedlist, clippy::needless_pass_by_value)]
 pub fn add_two_numbers(
     l1: Option<Box<ListNode>>,
     l2: Option<Box<ListNode>>,
@@ -45,15 +45,16 @@ pub fn add_two_numbers(
             carry = false;
         }
 
-        curr.as_mut().unwrap().next = Some(Box::new(ListNode {
+        curr.as_mut().expect("Failed to access value.").next = Some(Box::new(ListNode {
             val: sum,
             next: None,
         }));
-        curr = curr.unwrap().next.as_mut();
+        curr = curr.expect("Failed to access value.").next.as_mut();
     }
 
     if carry {
-        curr.as_mut().unwrap().next = Some(Box::new(ListNode { val: 1, next: None }));
+        curr.as_mut().expect("Failed to access value.").next =
+            Some(Box::new(ListNode { val: 1, next: None }));
     }
 
     dummy_node?.next

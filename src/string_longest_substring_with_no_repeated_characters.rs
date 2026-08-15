@@ -1,7 +1,7 @@
 use std::collections::HashMap;
 
 #[allow(dead_code)]
-pub fn length_of_longest_substring(s: String) -> i32 {
+pub fn length_of_longest_substring(s: &str) -> i32 {
     let mut result: i32 = 0;
     let mut slow: usize = 0;
     let mut map: HashMap<char, usize> = HashMap::new();
@@ -10,7 +10,7 @@ pub fn length_of_longest_substring(s: String) -> i32 {
         if let Some(index) = map.get(&cha) && index >= &slow {
             slow = index + 1;
         } else {
-            result = result.max((fast - slow) as i32 + 1);
+            result = result.max(i32::try_from(fast - slow).expect("reason") + 1);
         }
 
         map.insert(cha, fast);
@@ -25,41 +25,41 @@ mod tests {
 
     #[test]
     fn empty_case() {
-        let s: String = "".into();
+        let s = "";
         let result: i32 = 0;
         assert_eq!(length_of_longest_substring(s), result);
     }
 
     #[test]
     fn my_cases() {
-        let input = String::from("abcdefg");
+        let input = "abcdefg";
         let output = 7;
         assert_eq!(length_of_longest_substring(input), output);
     }
 
     #[test]
     fn leetcode_cases() {
-        let input = String::from("abcabcbb");
+        let input = "abcabcbb";
         let output = 3;
         assert_eq!(length_of_longest_substring(input), output);
 
-        let input = String::from("bbbbb");
+        let input = "bbbbb";
         let output = 1;
         assert_eq!(length_of_longest_substring(input), output);
 
-        let input = String::from("pwwkew");
+        let input = "pwwkew";
         let output = 3;
         assert_eq!(length_of_longest_substring(input), output);
 
-        let input = String::from(" ");
+        let input = " ";
         let output = 1;
         assert_eq!(length_of_longest_substring(input), output);
 
-        let input = String::from("tmmzuxt");
+        let input = "tmmzuxt";
         let output = 5;
         assert_eq!(length_of_longest_substring(input), output);
 
-        let input = String::from("aab");
+        let input = "aab";
         let output = 2;
         assert_eq!(length_of_longest_substring(input), output);
     }

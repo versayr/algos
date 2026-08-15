@@ -5,16 +5,16 @@ pub fn num_uniques(array: &[u32]) -> u32 {
     let mut duplicates: u32 = 0;
     let mut freq = HashMap::new();
 
-    for num in array.iter() {
+    for num in array {
         freq.entry(num)
             .and_modify(|count: &mut u32| *count += 1)
             .or_insert(1);
         if freq.get(num) == Some(&2) {
             duplicates += 1;
-        };
+        }
     }
 
-    freq.len() as u32 - duplicates
+    u32::try_from(freq.len()).expect("reason") - duplicates
 }
 
 #[cfg(test)]

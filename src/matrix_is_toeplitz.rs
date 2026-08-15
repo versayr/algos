@@ -1,8 +1,14 @@
 #[allow(dead_code)]
-pub fn is_toeplitz(matrix: Vec<Vec<i32>>) -> bool {
+pub fn is_toeplitz(matrix: &[Vec<i32>]) -> bool {
     for (x, row) in matrix.iter().enumerate().take(matrix.len() - 1) {
         for (y, element) in row.iter().enumerate().take(matrix.len() - 1) {
-            if *element != matrix[x + 1][y + 1] {
+            if *element
+                != *matrix
+                    .get(x + 1)
+                    .expect("Index out of range.")
+                    .get(y + 1)
+                    .expect("Index out of range.")
+            {
                 return false;
             }
         }
@@ -12,13 +18,19 @@ pub fn is_toeplitz(matrix: Vec<Vec<i32>>) -> bool {
 }
 
 #[allow(dead_code)]
-pub fn is_toeplitz_bi(matrix: Vec<Vec<i32>>) -> bool {
+pub fn is_toeplitz_bi(matrix: &[Vec<i32>]) -> bool {
     let mut right: bool = true;
     let mut left: bool = true;
 
     for (x, row) in matrix.iter().enumerate().take(matrix.len() - 1) {
         for (y, element) in row.iter().enumerate().take(matrix.len() - 1) {
-            if *element != matrix[x + 1][y + 1] {
+            if *element
+                != *matrix
+                    .get(x + 1)
+                    .expect("Index out of range.")
+                    .get(y + 1)
+                    .expect("Index out of range.")
+            {
                 right = false;
                 break;
             }
@@ -27,7 +39,13 @@ pub fn is_toeplitz_bi(matrix: Vec<Vec<i32>>) -> bool {
 
     for (x, row) in matrix.iter().enumerate().take(matrix.len() - 1) {
         for (y, element) in row.iter().enumerate().skip(1) {
-            if *element != matrix[x + 1][y - 1] {
+            if *element
+                != *matrix
+                    .get(x + 1)
+                    .expect("Index out of range.")
+                    .get(y - 1)
+                    .expect("Index out of range.")
+            {
                 left = false;
                 break;
             }
@@ -44,60 +62,60 @@ mod tests {
 
     #[test]
     fn unidirectional() {
-        let matrix = vec![vec![1, 2], vec![2, 2]];
-        assert!(is_toeplitz(matrix).not());
-        let matrix = vec![vec![1, 2], vec![2, 1]];
-        assert!(is_toeplitz(matrix));
-        let matrix = vec![
+        let matrix = [vec![1, 2], vec![2, 2]];
+        assert!(is_toeplitz(&matrix).not());
+        let matrix = [vec![1, 2], vec![2, 1]];
+        assert!(is_toeplitz(&matrix));
+        let matrix = [
             vec![1, 2, 3, 4],
             vec![5, 1, 2, 3],
             vec![6, 5, 1, 2],
             vec![7, 6, 5, 1],
         ];
-        assert!(is_toeplitz(matrix));
-        let matrix = vec![
+        assert!(is_toeplitz(&matrix));
+        let matrix = [
             vec![1, 2, 3, 4],
             vec![5, 1, 2, 3],
             vec![6, 5, 1, 2],
             vec![7, 6, 5, 9],
         ];
-        assert!(is_toeplitz(matrix).not());
-        let matrix = vec![
+        assert!(is_toeplitz(&matrix).not());
+        let matrix = [
             vec![1, 2, 6, 4],
             vec![2, 6, 4, 3],
             vec![6, 4, 3, 5],
             vec![4, 3, 5, 9],
         ];
-        assert!(is_toeplitz(matrix).not());
+        assert!(is_toeplitz(&matrix).not());
     }
 
     #[test]
     fn bidirectional() {
-        let matrix = vec![vec![1, 2], vec![2, 2]];
-        assert!(is_toeplitz_bi(matrix));
-        let matrix = vec![vec![1, 2], vec![2, 1]];
-        assert!(is_toeplitz_bi(matrix));
-        let matrix = vec![
+        let matrix = [vec![1, 2], vec![2, 2]];
+        assert!(is_toeplitz_bi(&matrix));
+        let matrix = [vec![1, 2], vec![2, 1]];
+        assert!(is_toeplitz_bi(&matrix));
+        let matrix = [
             vec![1, 2, 3, 4],
             vec![5, 1, 2, 3],
             vec![6, 5, 1, 2],
             vec![7, 6, 5, 1],
         ];
-        assert!(is_toeplitz_bi(matrix));
-        let matrix = vec![
+        assert!(is_toeplitz_bi(&matrix));
+        let matrix = [
             vec![1, 2, 3, 4],
             vec![5, 1, 2, 3],
             vec![6, 5, 1, 2],
             vec![7, 6, 5, 9],
         ];
-        assert!(is_toeplitz_bi(matrix).not());
-        let matrix = vec![
+        assert!(is_toeplitz_bi(&matrix).not());
+        let matrix = [
             vec![1, 2, 6, 4],
             vec![2, 6, 4, 3],
             vec![6, 4, 3, 5],
             vec![4, 3, 5, 9],
         ];
-        assert!(is_toeplitz_bi(matrix));
+        assert!(is_toeplitz_bi(&matrix));
     }
 }
 //     OLD

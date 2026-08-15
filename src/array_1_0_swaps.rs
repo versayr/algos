@@ -17,7 +17,10 @@ pub fn min_swaps(array: &[u32]) -> u32 {
         }
     }
 
-    min(zero_swaps as u32, one_swaps as u32)
+    min(
+        u32::try_from(zero_swaps).expect("reason"),
+        u32::try_from(one_swaps).expect("reason"),
+    )
 }
 
 #[cfg(test)]

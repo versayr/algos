@@ -3,14 +3,14 @@ use ::std::{cell::RefCell, rc::Rc};
 #[derive(Debug, Clone)]
 pub struct BinaryTree<T> {
     value: T,
-    left: Option<Rc<RefCell<BinaryTree<T>>>>,
-    right: Option<Rc<RefCell<BinaryTree<T>>>>,
+    left: Option<Rc<RefCell<Self>>>,
+    right: Option<Rc<RefCell<Self>>>,
 }
 
 #[allow(dead_code)]
 impl<T: std::fmt::Debug> BinaryTree<T> {
-    pub fn new(value: T) -> Self {
-        BinaryTree {
+    pub const fn new(value: T) -> Self {
+        Self {
             value,
             left: None,
             right: None,
@@ -18,11 +18,11 @@ impl<T: std::fmt::Debug> BinaryTree<T> {
     }
 
     pub fn insert_left(&mut self, value: T) {
-        self.left = Some(Rc::new(RefCell::new(BinaryTree::new(value))));
+        self.left = Some(Rc::new(RefCell::new(Self::new(value))));
     }
 
     pub fn insert_right(&mut self, value: T) {
-        self.right = Some(Rc::new(RefCell::new(BinaryTree::new(value))));
+        self.right = Some(Rc::new(RefCell::new(Self::new(value))));
     }
 
     pub fn traverse_inorder(&self) {

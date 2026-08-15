@@ -2,22 +2,22 @@
 pub fn dutch_national_flag(mut array: Vec<u32>) -> Vec<u32> {
     if array.is_empty() {
         return array;
-    };
+    }
     let mut lo: usize = 0;
     let mut hi: usize = array.len() - 1;
     let mut curr: usize = 0;
 
     while curr <= hi {
-        if array[curr] == 0 {
+        if *array.get(curr).expect("Index out of range.") == 0 {
             array.swap(lo, curr);
             curr += 1;
             lo += 1;
-        } else if array[curr] == 2 {
+        } else if *array.get(curr).expect("Index out of range.") == 2 {
             array.swap(hi, curr);
             hi -= 1;
-        } else if array[curr] == 1 {
+        } else if *array.get(curr).expect("Index out of range.") == 1 {
             curr += 1;
-        };
+        }
     }
 
     array

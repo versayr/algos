@@ -5,7 +5,9 @@ pub fn bubble(array: &mut Vec<i32>) -> &mut Vec<i32> {
     while swapped {
         swapped = false;
         for i in 0..array.len() - 1 {
-            if array[i] > array[i + 1] {
+            if array.get(i).expect("Index out of range.")
+                > array.get(i + 1).expect("Index out of range.")
+            {
                 array.swap(i, i + 1);
                 swapped = true;
             }

@@ -10,8 +10,8 @@ pub fn justify(words: Vec<&str>, target: usize) -> Vec<String> {
         while let Some(word) = iter.next_if(|&w| w.len() + chars < target) {
             line.push(word);
             if line.len() != 1 {
-                chars += 1
-            };
+                chars += 1;
+            }
             chars += word.len();
         }
 
@@ -36,7 +36,7 @@ fn normal_justify(line: Vec<&str>, chars: usize, max: usize) -> String {
     while let Some(word) = iter.next() {
         words.push(word);
         if iter.peek().is_some() {
-            words.push(&baseline_spaces)
+            words.push(&baseline_spaces);
         }
         if remainder > 0 {
             words.push(" ");

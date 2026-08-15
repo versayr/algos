@@ -1,36 +1,34 @@
 use std::collections::HashMap;
 
 #[allow(dead_code)]
-pub fn subarrays_sum_to_k(array: &[u32], subarray_length: u32, sum: u32) -> u32 {
-    let subarray_length = subarray_length as usize;
-
+pub fn subarrays_sum_to_k(array: &[u32], subarray_length: usize, sum: u32) -> u32 {
     let mut result: u32 = 0;
     let mut freq: HashMap<&u32, u32> = HashMap::new();
     let mut pairs_in_window: u32 = 0;
 
     for i in 0..array.len() {
-        let curr: &u32 = &array[i];
+        let curr: &u32 = array.get(i).expect("Index out of range.");
         if freq.contains_key(&(sum - curr)) {
             pairs_in_window += 1;
-        };
+        }
 
         if i >= subarray_length {
-            let last: &u32 = &array[i - subarray_length];
+            let last: &u32 = array.get(i - subarray_length).expect("Index out of range.");
 
             if freq.get(last) == Some(&1) {
                 freq.remove(last);
             } else {
-                freq.insert(last, freq.get(last).unwrap() - 1);
-            };
+                freq.insert(last, freq.get(last).expect("Index out of range.") - 1);
+            }
 
             if freq.contains_key(&(sum - last)) {
                 pairs_in_window -= 1;
-            };
-        };
+            }
+        }
 
         if i >= subarray_length - 1 && pairs_in_window > 0 {
             result += 1;
-        };
+        }
 
         match freq.get(curr) {
             Some(count) => {
@@ -39,7 +37,7 @@ pub fn subarrays_sum_to_k(array: &[u32], subarray_length: u32, sum: u32) -> u32 
             None => {
                 freq.insert(curr, 1);
             }
-        };
+        }
     }
 
     result

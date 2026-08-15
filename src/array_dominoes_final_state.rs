@@ -4,31 +4,31 @@ pub fn dominoes_final_state(mut array: Vec<char>) -> Vec<char> {
     let mut fast: usize = 1;
 
     while fast < array.len() {
-        while fast < array.len() - 1 && array[fast] == '.' {
+        while fast < array.len() - 1 && *array.get(fast).expect("Index out of range.") == '.' {
             fast += 1;
         }
 
-        let left = array[slow];
-        let right = array[fast];
+        let left = *array.get(slow).expect("Index out of range.");
+        let right = *array.get(fast).expect("Index out of range.");
 
         if left == 'R' && right == 'L' {
-            let mut slo = slow + 1;
-            let mut fst = fast - 1;
+            let mut s = slow + 1;
+            let mut f = fast - 1;
 
-            while slo < fst {
-                array[slo] = 'R';
-                array[fst] = 'L';
-                slo += 1;
-                fst -= 1;
+            while s < f {
+                *array.get_mut(s).expect("Index out of range.") = 'R';
+                *array.get_mut(f).expect("Index out of range.") = 'L';
+                s += 1;
+                f -= 1;
             }
         } else if { left == '.' && right == 'L' } || { left == 'L' && right == 'L' } {
             while slow <= fast {
-                array[slow] = 'L';
+                *array.get_mut(slow).expect("Index out of range.") = 'L';
                 slow += 1;
             }
         } else if { left == 'R' && right == '.' } || { left == 'R' && right == 'R' } {
             while slow <= fast {
-                array[slow] = 'R';
+                *array.get_mut(slow).expect("Index out of range.") = 'R';
                 slow += 1;
             }
         }

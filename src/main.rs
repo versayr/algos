@@ -12,6 +12,7 @@ mod binary_tree_dfs_stack;
 mod int_is_palindrome;
 mod ll_add_two_numbers;
 mod ll_count_odd_elements;
+mod ll_partition_list_into_segments;
 mod matrix_is_toeplitz;
 mod sort_bubble;
 mod sort_insertion;
