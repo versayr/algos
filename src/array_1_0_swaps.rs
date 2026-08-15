@@ -9,11 +9,11 @@ pub fn min_swaps(array: &[u32]) -> u32 {
 
     for (i, item) in array.iter().enumerate() {
         if *item == 0 {
-            zero_swaps += i - zero_idx;
-            zero_idx += 1;
+            zero_swaps += i.saturating_sub(zero_idx);
+            zero_idx = zero_idx.saturating_add(1);
         } else {
-            one_swaps += i - one_idx;
-            one_idx += 1;
+            one_swaps += i.saturating_sub(one_idx);
+            one_idx = one_idx.saturating_add(1);
         }
     }
 
