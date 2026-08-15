@@ -1,10 +1,11 @@
 #[allow(dead_code)]
 pub fn generate_superset(array: &[u32]) -> Vec<Vec<u32>> {
-    let mut output: Vec<Vec<u32>> = vec![];
     let max = u32::pow(
         2,
         u32::try_from(array.len()).expect("Value may be truncated due to 64-bit wide pointers."),
     );
+    let mut output: Vec<Vec<u32>> =
+        Vec::with_capacity(max.try_into().expect("Max value is invalid."));
 
     for mask in 0..max {
         output.push(
@@ -16,7 +17,7 @@ pub fn generate_superset(array: &[u32]) -> Vec<Vec<u32>> {
                 .copied()
                 .collect(),
         );
-    };
+    }
 
     output
 }
@@ -27,19 +28,19 @@ mod tests {
 
     #[test]
     fn test_empty() {
-        assert_eq!(generate_superset(&vec![]), vec![vec![]])
+        assert_eq!(generate_superset(&[]), vec![vec![]])
     }
 
     #[test]
     fn test_small() {
-        let array = vec![1, 2];
+        let array = [1, 2];
         let result: Vec<Vec<u32>> = vec![vec![], vec![1], vec![2], vec![1, 2]];
         assert_eq!(generate_superset(&array), result)
     }
 
     #[test]
     fn test_large() {
-        let array = vec![0, 1, 2, 3, 4, 5];
+        let array = [0, 1, 2, 3, 4, 5];
         let result: Vec<Vec<u32>> = vec![
             vec![],
             vec![0],
